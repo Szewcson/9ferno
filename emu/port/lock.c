@@ -2,7 +2,7 @@
 #include	"fns.h"
 #include	"error.h"
 
-extern void	(*coherence)(void);
+extern void	(*inferno_coherence)(void);
 
 void
 lock(Lock *l)
@@ -36,7 +36,7 @@ canlock(Lock *l)
 void
 unlock(Lock *l)
 {
-	coherence();
+	inferno_coherence();
 	l->val = 0;
 }
 

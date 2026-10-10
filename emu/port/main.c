@@ -7,7 +7,7 @@
 #include	"version.h"
 
 #define DP if(1){}else print
-void	(*coherence)(void) = nil;	/* used by port/lock.c and port/win-x11a.c */
+void	(*inferno_coherence)(void) = nil;	/* used by port/lock.c and port/win-x11a.c */
 int	exdebug = 0;
 int		rebootargc = 0;
 char**		rebootargv;
@@ -244,8 +244,8 @@ main(int argc, char *argv[])
 	char *enva[20];
 	int envc;
 
-	if(coherence == nil)
-		coherence = nofence;
+	if(inferno_coherence == nil)
+		inferno_coherence = nofence;
 	quotefmtinstall();
 	savestartup(argc, argv);
 	/* set default root now, so either $EMU or -r can override it later */
@@ -463,7 +463,7 @@ _assert(char *fmt)
 /*
  * mainly for libmp
  */
-void
+_Noreturn void
 sysfatal(char *fmt, ...)
 {
 	va_list arg;

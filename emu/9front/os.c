@@ -143,6 +143,12 @@ traphandler(void *reg, char *msg)
 {
 	int intwait;
 
+	/* Rio closes a window with a note to the whole note group.
+	 * Exit in the kernel; do not run VM fault handling or shared
+	 * userspace cleanup while the other processes are exiting. */
+	if(strcmp(msg, "hangup") == 0)
+		_exits(nil);
+
 	intwait = up->intwait;
 	up->intwait = 0;
 	/* Ignore pipe writes from devcmd */

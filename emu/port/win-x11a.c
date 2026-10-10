@@ -56,7 +56,7 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
-extern void	(*coherence)(void);
+extern void	(*inferno_coherence)(void);
 static int	displaydepth;
 extern ulong	displaychan;
 
@@ -625,7 +625,7 @@ xcurslock(void)
 static void
 xcursunlock(void)
 {
-	coherence();
+	inferno_coherence();
 	icursor.inuse = 0;
 }
 
